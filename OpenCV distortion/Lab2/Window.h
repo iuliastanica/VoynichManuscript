@@ -27,8 +27,13 @@ public:
 	int nr;
 	Window();
 	Window(string shape, int no_rows, int no_cols, int stepRows, int stepCols);
+	Window(string shape, int no_rows, int no_cols);
 
-	void getWindowRect(Mat src, int pos_x, int pos_y);
+	Mat getWindowRect(Mat src, int pos_x, int pos_y);
+	Mat getWindowCircle(Mat src, int pos_x, int pos_y);
+	void setName(string name);
+	void setNoRows(int rows);
+	void setNoCols(int cols);
 
 	~Window();
 };

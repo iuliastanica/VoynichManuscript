@@ -23,6 +23,7 @@ void trackbar_callback(int value, void* userdata)
 	const float height = (float)image->cols;
 
 	Mat result(image->rows, image->cols, image->type());
+	result.copyTo(res);
 
 	for (int i = 0; i < image->rows; i++) {
 		for (int j = 0; j < image->cols; j++) {
@@ -51,6 +52,6 @@ void trackbar_callback(int value, void* userdata)
 	}
 	//namedWindow("Result image", CV_WINDOW_KEEPRATIO);
 	res = result;
-	imwrite("Result.jpg", res);
-	imshow("Result window", result);
+	//imwrite("Result.jpg", res);
+	//imshow("Result window", result);
 }

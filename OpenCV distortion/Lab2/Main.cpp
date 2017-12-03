@@ -3,8 +3,8 @@
 #include "math.h"
 #include <fstream>
 #include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/highgui/highgui.hpp>  
 #include <iostream> 
 #include "TwirlDistortion.h"
 #include "FishEyeDistortion.h"
@@ -20,10 +20,8 @@ Mat map_x, map_y;
 
 Mat small_window, small_dest, small_map_x, small_map_y;
 
-int ind = 0, thres, imageVal, shape, width, height;
-
 //Trackbar 1 for Voynich pages
-const int max_Trackbar = 4;
+const int max_Trackbar = 3;
 //Trackbar 2 for changing Distortion device
 const int max_Trackbar2 = 6;
 //Trackbar 3 for changing parameters / threshold (?)
@@ -31,9 +29,11 @@ const int max_Trackbar3 = 5;
 //Trackbar 4 for changing window shape
 const int max_Trackbar4 = 1;
 //Trackbar 5 for window width
-const int max_Trackbar5 = 37;
+const int max_Trackbar5 = 100;
 //Trackbar 6 for window height
-const int max_Trackbar6 = 37;
+const int max_Trackbar6 = 100;
+
+int ind, thres, imageVal, shape, width, height;
 
 //Mouse cursor position
 int posX, posY = 0;
@@ -43,7 +43,7 @@ int method;
 /// Function Headers
 void Distort(int, void*);
 void ReadImages(int, void*);
-void twirlEffect(Mat source);
+void twirlEffect(Mat* source, Mat dest, int i);
 void fishEyeEffect(Mat source, Mat dest);
 void cylinder(Mat source);
 void cone(Mat source);
@@ -61,9 +61,10 @@ int main(int argc, char** argv)
 	//resizeWindow("Source Image", src.rows, src.cols);
 
 	namedWindow("Result window", CV_WINDOW_KEEPRATIO);
-	setMouseCallback("Source Image", CallBackMouseFunc, NULL);
 
 	//resizeWindow("Result window", 800, 800);
+
+	ind = 0; thres = 0; imageVal = 0; shape = 0; width = 0; height = 0;
 
 	/// Create Trackbars
 	createTrackbar("Image", "Source Image", &imageVal, max_Trackbar, Distort);
@@ -72,6 +73,8 @@ int main(int argc, char** argv)
 	createTrackbar("Shape", "Source Image", &shape, max_Trackbar4, Distort);
 	createTrackbar("Width", "Source Image", &width, max_Trackbar5, Distort);
 	createTrackbar("Height", "Source Image", &height, max_Trackbar6, Distort);
+
+	setMouseCallback("Source Image", CallBackMouseFunc, NULL);
 
 	Distort(0, 0);
 }
@@ -145,7 +148,7 @@ void Distort(int, void*)
 			remap(src, dst, map_x, map_y, CV_INTER_LINEAR, BORDER_CONSTANT, Scalar(0, 0, 0));
 			break;
 		case 4:
-			twirlEffect(img_display);
+			twirlEffect(&img_display, dst, 1);
 			break;
 		case 5:
 			fishEyeEffect(img_display, dst);
@@ -170,23 +173,27 @@ void Distort(int, void*)
 	return;
 }
 
-void twirlEffect(Mat source)
+void twirlEffect(Mat* source, Mat dest, int i) //i=0 small, i=1 big
 {
 	try
 	{
-		//const cv::String name_window = "Twirl Image";
-		const cv::String name_trackbar = "Twirl";
-
-		//namedWindow(name_window);
-
 		//should be changed based on the small window's name
-		createTrackbar(name_trackbar, "Source Image", NULL, 200, trackbar_callback, &source);
-		setTrackbarPos(name_trackbar, "Source Image", 80);
-		//imshow("Source Image", source);
+		if (i == 1)
+		{
+			createTrackbar("TwirlLarge", "Source Image", NULL, 200, trackbar_callback1, source);
+			setTrackbarPos("TwirlLarge", "Source Image", 80);
 
-		//dst = getResult();
-		//waitKey(0);
-		//destroyAllWindows();
+			//dest = getResult();
+			getResult().copyTo(dest);
+		}
+		else if (i == 0)
+		{
+			createTrackbar("TwirlSmall", "Source Image", NULL, 200, trackbar_callback0, source);
+			setTrackbarPos("TwirlSmall", "Source Image", 80);
+
+			//dest = getResult();
+			getResult().copyTo(dest);
+		}
 	}
 	catch (cv::Exception& e)
 	{
@@ -254,10 +261,6 @@ void cylinder(Mat source)
 
 void CallBackMouseFunc(int event, int x, int y, int flags, void* userdata)
 {
-	//twirl effect
-	//if (ind == 4)
-		//dst = imread("Result.jpg");
-
 	if (event == EVENT_LBUTTONDOWN)
 	{
 		cout << x << ", " << y << endl;
@@ -327,9 +330,7 @@ void CallBackMouseFunc(int event, int x, int y, int flags, void* userdata)
 			remap(small_window, small_dest, small_map_x, small_map_y, CV_INTER_LINEAR, BORDER_CONSTANT, Scalar(0, 0, 0));
 			break;
 		case 4:
-			//Not working well
-			twirlEffect(small_window);
-			small_dest = getResult();
+			twirlEffect(&small_window, small_dest, 0);
 			break;
 		case 5:
 			fishEyeEffect(small_window, small_dest);

@@ -7,6 +7,6 @@
 using namespace cv;
 using namespace std;
 
-Mat distort1(Mat img);
-void trackbar_callback(int value, void* userdata);
+void trackbar_callback1(int value, void* userdata);
+void trackbar_callback0(int value, void* userdata);
 Mat getResult();

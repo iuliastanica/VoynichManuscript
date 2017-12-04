@@ -23,17 +23,15 @@ Mat small_window, small_dest, small_map_x, small_map_y;
 //Trackbar 1 for Voynich pages
 const int max_Trackbar = 3;
 //Trackbar 2 for changing Distortion device
-const int max_Trackbar2 = 6;
-//Trackbar 3 for changing parameters / threshold (?)
-const int max_Trackbar3 = 5;
+const int max_Trackbar2 = 7;
 //Trackbar 4 for changing window shape
-const int max_Trackbar4 = 1;
+const int max_Trackbar3 = 1;
 //Trackbar 5 for window width
-const int max_Trackbar5 = 100;
+const int max_Trackbar4 = 100;
 //Trackbar 6 for window height
-const int max_Trackbar6 = 100;
+const int max_Trackbar5 = 100;
 
-int ind, thres, imageVal, shape, width, height;
+int ind, imageVal, shape, width, height;
 
 //Mouse cursor position
 int posX, posY = 0;
@@ -45,8 +43,9 @@ void Distort(int, void*);
 void ReadImages(int, void*);
 void twirlEffect(Mat* source, Mat dest, int i);
 void fishEyeEffect(Mat source, Mat dest);
-void cylinder(Mat source);
-void cone(Mat source);
+void cylinderEffect(Mat* source, Mat dest, int i);
+void coneEffect(Mat* source, Mat dest, int i);
+
 void CallBackMouseFunc(int event, int x, int y, int flags, void* userdata);
 
 Window w("rectangle", 100, 100);
@@ -64,15 +63,14 @@ int main(int argc, char** argv)
 
 	//resizeWindow("Result window", 800, 800);
 
-	ind = 0; thres = 0; imageVal = 0; shape = 0; width = 0; height = 0;
+	ind = 0; imageVal = 0; shape = 0; width = 0; height = 0;
 
 	/// Create Trackbars
 	createTrackbar("Image", "Source Image", &imageVal, max_Trackbar, Distort);
 	createTrackbar("Method", "Source Image", &ind, max_Trackbar2, Distort);
-	createTrackbar("Threshold", "Source Image", &thres, max_Trackbar3, Distort);
-	createTrackbar("Shape", "Source Image", &shape, max_Trackbar4, Distort);
-	createTrackbar("Width", "Source Image", &width, max_Trackbar5, Distort);
-	createTrackbar("Height", "Source Image", &height, max_Trackbar6, Distort);
+	createTrackbar("Shape", "Source Image", &shape, max_Trackbar3, Distort);
+	createTrackbar("Width", "Source Image", &width, max_Trackbar4, Distort);
+	createTrackbar("Height", "Source Image", &height, max_Trackbar5, Distort);
 
 	setMouseCallback("Source Image", CallBackMouseFunc, NULL);
 
@@ -152,12 +150,13 @@ void Distort(int, void*)
 			break;
 		case 5:
 			fishEyeEffect(img_display, dst);
-			break;
+			break;		
 		case 6:
-			cylinder(img_display);
+			cylinderEffect(&img_display, dst, 1);
 			break;
-		//case 7:
-			//cone(img_display);
+		case 7:
+			coneEffect(&img_display, dst, 1);
+			break;
 	}
 
 	//Set width and height of the window
@@ -208,24 +207,27 @@ void fishEyeEffect(Mat source, Mat dest)
 
 }
 
-//Should be changed
-void cylinder(Mat source)
+void cylinderEffect(Mat* source, Mat dest, int i) //i=0 small, i=1 big
 {
 	try
 	{
-		//const cv::String name_window = "Twirl Image";
-		const cv::String name_trackbar = "Cylinder";
-
-		//namedWindow(name_window);
-
 		//should be changed based on the small window's name
-		createTrackbar(name_trackbar, "Source Image", NULL, 200, trackbar_callback_cylinder, &source);
-		setTrackbarPos(name_trackbar, "Source Image", 80);
-		//imshow("Source Image", source);
+		if (i == 1)
+		{
+			createTrackbar("CylinderLarge", "Source Image", NULL, 200, cyl_callback1, source);
+			setTrackbarPos("CylinderLarge", "Source Image", 80);
 
-		//dst = getResult();
-		//waitKey(0);
-		//destroyAllWindows();
+			//dest = getResult();
+			getCylResult().copyTo(dest);
+		}
+		else if (i == 0)
+		{
+			createTrackbar("CylinderSmall", "Source Image", NULL, 200, cyl_callback0, source);
+			setTrackbarPos("CylinderSmall", "Source Image", 80);
+
+			//dest = getResult();
+			getCylResult().copyTo(dest);
+		}
 	}
 	catch (cv::Exception& e)
 	{
@@ -234,30 +236,34 @@ void cylinder(Mat source)
 	}
 }
 
-/*void cone(Mat source)
+void coneEffect(Mat* source, Mat dest, int i) //i=0 small, i=1 big
 {
 	try
 	{
-		//const cv::String name_window = "Twirl Image";
-		const cv::String name_trackbar = "Twirl";
-
-		//namedWindow(name_window);
-
 		//should be changed based on the small window's name
-		createTrackbar(name_trackbar, "Source Image", NULL, 200, trackbar_callback_cone, &source);
-		setTrackbarPos(name_trackbar, "Source Image", 80);
-		//imshow("Source Image", source);
+		if (i == 1)
+		{
+			createTrackbar("ConeLarge", "Source Image", NULL, 200, cone_callback1, source);
+			setTrackbarPos("ConeLarge", "Source Image", 80);
 
-		//dst = getResult();
-		//waitKey(0);
-		//destroyAllWindows();
+			//dest = getResult();
+			getConeResult().copyTo(dest);
+		}
+		else if (i == 0)
+		{
+			createTrackbar("ConeSmall", "Source Image", NULL, 200, cone_callback0, source);
+			setTrackbarPos("ConeSmall", "Source Image", 80);
+
+			//dest = getResult();
+			getConeResult().copyTo(dest);
+		}
 	}
 	catch (cv::Exception& e)
 	{
 		const char* err_msg = e.what();
 		std::cout << "exception caught: " << err_msg << std::endl;
 	}
-}*/
+}
 
 void CallBackMouseFunc(int event, int x, int y, int flags, void* userdata)
 {
@@ -334,6 +340,12 @@ void CallBackMouseFunc(int event, int x, int y, int flags, void* userdata)
 			break;
 		case 5:
 			fishEyeEffect(small_window, small_dest);
+			break;
+		case 6:
+			cylinderEffect(&small_window, small_dest, 0);
+			break;
+		case 7:
+			coneEffect(&small_window, small_dest, 0);
 			break;
 		}
 

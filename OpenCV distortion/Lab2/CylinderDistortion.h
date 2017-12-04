@@ -5,6 +5,11 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <iostream>
 
+using namespace std;
 using namespace cv;
 
-void trackbar_callback_cylinder(int value, void* userdata);
+void cyl_callback1(int value, void* userdata);
+void cyl_callback0(int value, void* userdata);
+
+
+Mat getCylResult();

@@ -5,5 +5,9 @@
 #include <iostream>
 
 using namespace cv;
+using namespace std;
 
-void trackbar_callback_cone(int value, void* userdata);
+void cone_callback1(int value, void* userdata);
+void cone_callback0(int value, void* userdata);
+
+Mat getConeResult();

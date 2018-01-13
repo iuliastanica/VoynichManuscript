@@ -1,0 +1,9 @@
+*.sdf
+OpenCV distortion/ImageDistortion.sdf
+*.pdb
+*.ipch
+OpenCV distortion/ipch/LAB2-5b5cd973/IMAGEDISTORTION-9060461c.ipch
+*.pch
+*.obj
+*.tlog
+*.filters

@@ -1,4 +1,24 @@
-﻿  stdafx.cpp
-  Lab2.cpp
-  Lab2.vcxproj -> c:\users\iulia13\documents\visual studio 2015\Projects\Lab2\x64\Debug\Lab2.exe
-  Lab2.vcxproj -> c:\users\iulia13\documents\visual studio 2015\Projects\Lab2\x64\Debug\Lab2.pdb (Full PDB)
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Lab2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  stdafx.cpp
+  Window.cpp
+  TwirlDistortion.cpp
+  Scramble.cpp
+c:\users\localguest\documents\github\voynichmanuscript\opencv distortion\lab2\scramble.cpp(47): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Main.cpp
+  FishEyeDistortion.cpp
+c:\users\localguest\documents\github\voynichmanuscript\opencv distortion\lab2\fisheyedistortion.cpp(7): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\localguest\documents\github\voynichmanuscript\opencv distortion\lab2\fisheyedistortion.cpp(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\localguest\documents\github\voynichmanuscript\opencv distortion\lab2\fisheyedistortion.cpp(87): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\localguest\documents\github\voynichmanuscript\opencv distortion\lab2\fisheyedistortion.cpp(88): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\localguest\documents\github\voynichmanuscript\opencv distortion\lab2\fisheyedistortion.cpp(90): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\localguest\documents\github\voynichmanuscript\opencv distortion\lab2\fisheyedistortion.cpp(92): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\localguest\documents\github\voynichmanuscript\opencv distortion\lab2\fisheyedistortion.cpp(93): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\localguest\documents\github\voynichmanuscript\opencv distortion\lab2\fisheyedistortion.cpp(106): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\localguest\documents\github\voynichmanuscript\opencv distortion\lab2\fisheyedistortion.cpp(115): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  CylinderDistortion.cpp
+  ConeDistortion.cpp
+c:\users\localguest\documents\github\voynichmanuscript\opencv distortion\lab2\conedistortion.cpp(45): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\localguest\documents\github\voynichmanuscript\opencv distortion\lab2\conedistortion.cpp(100): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+Scramble.obj : error LNK2019: unresolved external symbol "public: __cdecl cv::SURF::SURF(double,int,int,bool,bool)" (??0SURF@cv@@QEAA@NHH_N0@Z) referenced in function "void __cdecl detectFeatures(class cv::Mat &)" (?detectFeatures@@YAXAEAVMat@cv@@@Z)
+C:\Users\LocalGuest\Documents\GitHub\VoynichManuscript\OpenCV distortion\x64\Debug\ImageDistortion.exe : fatal error LNK1120: 1 unresolved externals

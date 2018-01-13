@@ -10,10 +10,13 @@
 #include "FishEyeDistortion.h"
 #include "CylinderDistortion.h"
 #include "ConeDistortion.h"
+#include "Scramble.h"
 #include "Window.h"
 
 using namespace cv;  
 using namespace std;
+
+int imgInd=0;
 
 Mat src, dst;
 Mat map_x, map_y;
@@ -23,7 +26,7 @@ Mat small_window, small_dest, small_map_x, small_map_y;
 //Trackbar 1 for Voynich pages
 const int max_Trackbar = 3;
 //Trackbar 2 for changing Distortion device
-const int max_Trackbar2 = 7;
+const int max_Trackbar2 = 8;
 //Trackbar 4 for changing window shape
 const int max_Trackbar3 = 1;
 //Trackbar 5 for window width
@@ -157,6 +160,9 @@ void Distort(int, void*)
 		case 7:
 			coneEffect(&img_display, dst, 1);
 			break;
+		case 8:
+			scramble(img_display, dst, 200, 100, 20);
+			break;
 	}
 
 	//Set width and height of the window
@@ -165,6 +171,11 @@ void Distort(int, void*)
 
 	/// Display results
 	imshow("Result window", dst);
+
+	string name = "Results/Image" + to_string(imgInd) + ".jpg";
+	imgInd++;
+
+	imwrite(name, dst);
 
 	imshow("Source Image", img_display);
 

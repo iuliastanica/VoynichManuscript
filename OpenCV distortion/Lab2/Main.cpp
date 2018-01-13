@@ -24,8 +24,6 @@ Mat small_window, small_dest, small_map_x, small_map_y;
 const int max_Trackbar = 3;
 //Trackbar 2 for changing Distortion device
 const int max_Trackbar2 = 7;
-//Trackbar 4 for changing window shape
-const int max_Trackbar3 = 1;
 //Trackbar 5 for window width
 const int max_Trackbar4 = 100;
 //Trackbar 6 for window height
@@ -68,7 +66,6 @@ int main(int argc, char** argv)
 	/// Create Trackbars
 	createTrackbar("Image", "Source Image", &imageVal, max_Trackbar, Distort);
 	createTrackbar("Method", "Source Image", &ind, max_Trackbar2, Distort);
-	createTrackbar("Shape", "Source Image", &shape, max_Trackbar3, Distort);
 	createTrackbar("Width", "Source Image", &width, max_Trackbar4, Distort);
 	createTrackbar("Height", "Source Image", &height, max_Trackbar5, Distort);
 

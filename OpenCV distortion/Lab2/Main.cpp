@@ -12,13 +12,14 @@
 #include "ConeDistortion.h"
 #include "Scramble.h"
 #include "Window.h"
+#include "Template.h"
 
 using namespace cv;  
 using namespace std;
 
 int imgInd=0;
 
-Mat src, dst;
+Mat src, dst, temp;
 Mat map_x, map_y;
 
 Mat small_window, small_dest, small_map_x, small_map_y;
@@ -91,6 +92,9 @@ void Distort(int, void*)
 {
 	ReadImages(0, 0);
 
+	string n = "Templates/Temp4.jpg";
+	temp = imread(n);
+
 	/// Source image to display
 	Mat img_display;
 	src.copyTo(img_display);
@@ -160,7 +164,9 @@ void Distort(int, void*)
 			coneEffect(&img_display, dst, 1);
 			break;
 		case 8:
+			match(img_display, temp);
 			scramble(img_display, dst, 200, 100);
+
 			break;
 	}
 
@@ -362,5 +368,8 @@ void CallBackMouseFunc(int event, int x, int y, int flags, void* userdata)
 		namedWindow("Roi", CV_WINDOW_AUTOSIZE);
 		imshow("Roi", small_dest);
 	}
+
+	//Matching
+
 	
 }

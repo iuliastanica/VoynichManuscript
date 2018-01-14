@@ -8,4 +8,4 @@
 using namespace cv;
 using namespace std;
 
-void match(InputArray _src, InputArray _temp, OutputArray _dst);
+void match(Mat src, Mat temp);

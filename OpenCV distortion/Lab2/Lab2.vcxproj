@@ -157,8 +157,10 @@
     <ClInclude Include="ConeDistortion.h" />
     <ClInclude Include="CylinderDistortion.h" />
     <ClInclude Include="FishEyeDistortion.h" />
+    <ClInclude Include="Scramble.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Template.h" />
     <ClInclude Include="TwirlDistortion.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
@@ -167,12 +169,14 @@
     <ClCompile Include="CylinderDistortion.cpp" />
     <ClCompile Include="FishEyeDistortion.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Scramble.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Template.cpp" />
     <ClCompile Include="TwirlDistortion.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>

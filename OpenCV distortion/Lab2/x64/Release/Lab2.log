@@ -1,9 +1,25 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (x64\Release\) contains files shared from another project (Lab2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  stdafx.cpp
+  ConeDistortion.cpp
+ConeDistortion.cpp(45): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+ConeDistortion.cpp(100): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  CylinderDistortion.cpp
+  FishEyeDistortion.cpp
+FishEyeDistortion.cpp(7): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+FishEyeDistortion.cpp(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+FishEyeDistortion.cpp(87): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+FishEyeDistortion.cpp(88): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+FishEyeDistortion.cpp(90): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+FishEyeDistortion.cpp(92): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+FishEyeDistortion.cpp(93): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+FishEyeDistortion.cpp(106): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+FishEyeDistortion.cpp(115): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   Main.cpp
+  Scramble.cpp
+Scramble.cpp(65): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  TwirlDistortion.cpp
+  Window.cpp
   Generating code
-  21 of 226 functions ( 9.3%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    7 functions had inline decision re-evaluated but remain unchanged
+  All 265 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
-  Lab2.vcxproj -> C:\Users\Iulia13\Documents\Master\Cursuri\An 2\GMRV\Boiangiu - Aeacd\Proiect\VoynichManuscript\OpenCV distortion\x64\Release\ImageDistortion.exe
-  Lab2.vcxproj -> C:\Users\Iulia13\Documents\Master\Cursuri\An 2\GMRV\Boiangiu - Aeacd\Proiect\VoynichManuscript\OpenCV distortion\x64\Release\ImageDistortion.pdb (Full PDB)
+  Lab2.vcxproj -> C:\Users\LocalGuest\Documents\GitHub\VoynichManuscript\OpenCV distortion\x64\Release\ImageDistortion.exe

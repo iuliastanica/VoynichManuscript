@@ -10,3 +10,9 @@ OpenCV distortion/ipch/LAB2-5b5cd973/IMAGEDISTORTION-9060461c.ipch
 *.opendb
 *.tlog
 *.pch
+*.log
+*.tlog
+*.suo
+*.obj
+*.lastbuildstate
+*.pch

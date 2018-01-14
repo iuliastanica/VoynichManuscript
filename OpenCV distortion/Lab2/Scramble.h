@@ -9,4 +9,4 @@
 using namespace cv;
 using namespace std;
 
-void scramble(InputArray _src, OutputArray _dst, int w, int h, int num);
+void scramble(Mat _src, Mat &_dst, int w, int h);

@@ -160,7 +160,7 @@ void Distort(int, void*)
 			coneEffect(&img_display, dst, 1);
 			break;
 		case 8:
-			scramble(img_display, dst, 200, 100, 20);
+			scramble(img_display, dst, 200, 100);
 			break;
 	}
 

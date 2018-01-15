@@ -87,6 +87,11 @@ vector<Rect> getWords(Mat _src) {
 			minRect[i] = boundingRect(cnt);
 			h += minRect[i].height;
 			nR++;
+
+			drawContours(drawing, contours, i, color, CV_FILLED, 8, hierarchy, 0, Point());
+
+			//bounding rectangles for contours
+			rectangle(drawing, minRect[i], color, 1, 8, 0);
 		}
 		i++;
 	}
@@ -119,6 +124,11 @@ vector<Rect> getWords(Mat _src) {
 			kr++;
 		}
 	}
+
+	/// Show in a window
+	namedWindow("Contours", CV_WINDOW_KEEPRATIO);
+	imwrite("../Words/_contours.jpg", drawing);
+	imshow("Contours", drawing);
 
 	return rects;
 }

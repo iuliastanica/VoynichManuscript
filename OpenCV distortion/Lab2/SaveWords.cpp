@@ -5,7 +5,7 @@
 /// Global variables
 
 
-void saveWords(Mat _src){
+void saveWords(Mat _src) {
 	int const max_value = 255;
 	int const max_type = 2;
 	int const max_BINARY_value = 255;
@@ -118,33 +118,10 @@ void saveWords(Mat _src){
 			if (minRect[i].width != 0 && minRect[i].height <= 3 * h) {
 				r[rL] = minRect[i];
 				rL++;
-				rectangle(drawing, minRect[i], Scalar(255,255,255), 1, 8, 0);
 			}
 		}
 
 		Mat rects = Mat::zeros(canny_output.size(), CV_8UC3);
-
-
-
-		/////////////////////////////////////////PROBLEM PART///////////////////////////////////////////////////////////
-		/// Merge rectangles
-		/*Rect r1, r2;
-
-		for (int ir = 0;ir<r.size() - 1;ir += 1)
-		for (int jr = ir + 1;jr < r.size();jr++) {
-		r1 = r[ir], r2 = r[jr];
-		if((r1 & r2).area()>0 )
-		if((r1 & r2).area() == r1.area() || (r1 & r2).area() == r2.area() || r2.br().x < r1.tl().x || r1.br().x < r2.tl().x)
-		{
-		r[ir] = r1 | r2;
-		r.erase(r.begin() + jr);
-		jr--;
-		}
-
-		}
-		*/
-		/////////////////////////////////////////PROBLEM PART///////////////////////////////////////////////////////////
-
 
 
 		////////////////////Saving rects/////////////////////////
@@ -167,11 +144,11 @@ void saveWords(Mat _src){
 			if (roi.area() <= h*h * 4 && rat > 0.45 && roi.width>roi.height)
 			{
 				stringstream ssfn;
-				ssfn << "../Words/" << filenumber << ".jpg";
+				ssfn << "../Words/" << filenumber << "word.jpg";
 				filename = ssfn.str();
 				filenumber++;
 				imwrite(filename, crop);
-				
+
 			}
 		}
 		/////////////////saving rectangles//////////////////////
@@ -179,6 +156,7 @@ void saveWords(Mat _src){
 
 		/// Show in a window
 		namedWindow("Contours", CV_WINDOW_KEEPRATIO);
+		imwrite("../Words/contours.jpg", drawing);
 		imshow("Contours", drawing);
 	}
 

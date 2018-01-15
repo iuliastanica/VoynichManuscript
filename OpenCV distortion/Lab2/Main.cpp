@@ -13,6 +13,7 @@
 #include "Scramble.h"
 #include "Window.h"
 #include "Template.h"
+#include "SaveWords.h"
 
 using namespace cv;  
 using namespace std;
@@ -34,6 +35,8 @@ const int max_Trackbar3 = 1;
 const int max_Trackbar4 = 100;
 //Trackbar 6 for window height
 const int max_Trackbar5 = 100;
+//Trackbar 7 for saving words
+const int max_Trackbar7 = 1;
 
 int ind, imageVal, shape, width, height;
 
@@ -45,6 +48,7 @@ int method;
 /// Function Headers
 void Distort(int, void*);
 void ReadImages(int, void*);
+void SaveWords(int, void*);
 void twirlEffect(Mat* source, Mat dest, int i);
 void fishEyeEffect(Mat source, Mat dest);
 void cylinderEffect(Mat* source, Mat dest, int i);
@@ -74,6 +78,7 @@ int main(int argc, char** argv)
 	createTrackbar("Method", "Source Image", &ind, max_Trackbar2, Distort);
 	createTrackbar("Width", "Source Image", &width, max_Trackbar4, Distort);
 	createTrackbar("Height", "Source Image", &height, max_Trackbar5, Distort);
+	createTrackbar("Save words", "Source Image", &imageVal, max_Trackbar7, SaveWords); //because createButton is deprecated
 
 	setMouseCallback("Source Image", CallBackMouseFunc, NULL);
 
@@ -86,6 +91,10 @@ void ReadImages(int, void*)
 	string s = Str(imageVal + 1) + ".jpg";
 	cout << s;
 	src = imread(s);
+}
+
+void SaveWords(int, void*) {
+	saveWords(src);
 }
 
 void Distort(int, void*)

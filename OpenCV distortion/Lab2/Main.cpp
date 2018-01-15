@@ -28,7 +28,7 @@ Mat small_window, small_dest, small_map_x, small_map_y;
 //Trackbar 1 for Voynich pages
 const int max_Trackbar = 3;
 //Trackbar 2 for changing Distortion device
-const int max_Trackbar2 = 8;
+const int max_Trackbar2 = 9;
 //Trackbar 4 for changing window shape
 const int max_Trackbar3 = 1;
 //Trackbar 5 for window width
@@ -173,9 +173,10 @@ void Distort(int, void*)
 			coneEffect(&img_display, dst, 1);
 			break;
 		case 8:
-			match(img_display, temp);
 			scramble(img_display, dst, 200, 100);
-
+			break;
+		case 9:
+			match(img_display, temp);
 			break;
 	}
 

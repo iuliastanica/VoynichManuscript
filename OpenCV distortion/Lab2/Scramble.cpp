@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Scramble.h"
+#include "SaveWords.h"
 
 Mat result, original, *auxDest;
 int roi_w, roi_h;
@@ -37,9 +38,20 @@ void chooseRand(Mat &roi1, Mat &roi2)
 		}
 }
 
+void chooseWords()//Mat &roi1, Mat &roi2)
+{
+	vector<Rect> rects = getWords(original);
+	Mat imgRect;
+	original.copyTo(imgRect);
+
+	namedWindow("imgRect", CV_WINDOW_KEEPRATIO);
+	imshow("imgRect", imgRect);
+}
+
 void trackbar_callback_scr(int value, void* userdata)
 {
 	original.copyTo(result);
+	cvtColor(result, result, CV_BGR2GRAY);
 	for (int i = 0; i < value; i++)
 	{
 		Mat roi1, roi2;
@@ -69,13 +81,14 @@ void scramble(Mat _src, Mat &_dst, int w, int h)
 	_src.copyTo(result);
 	_src.copyTo(original);
 	cvtColor(result, result, CV_BGR2GRAY);
-	cvtColor(original, original, CV_BGR2GRAY);
 	result.copyTo(_dst);
 	auxDest = &_dst;
 
+	//chooseWords();
+
 	try
 	{
-		createTrackbar("Scramble", "Source Image", NULL, 30, trackbar_callback_scr, &original);
+		createTrackbar("Scramble", "Source Image", NULL, 30, trackbar_callback_scr, &result);
 		setTrackbarPos("Scramble", "Source Image", 5);
 		//result.copyTo(_dst);
 	}

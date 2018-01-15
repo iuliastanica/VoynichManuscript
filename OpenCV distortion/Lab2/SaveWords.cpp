@@ -11,8 +11,9 @@ vector<Rect> getWords(Mat _src) {
 	int const max_value = 255;
 	int const max_type = 2;
 	int const max_BINARY_value = 255;
-	Mat src, dst;
+	Mat src, dst, imgRects;
 	_src.copyTo(src);
+	_src.copyTo(imgRects); //normal image with rects
 	Mat src_gray;
 	int cols = src.cols;
 	int rows = src.rows;
@@ -92,6 +93,7 @@ vector<Rect> getWords(Mat _src) {
 
 			//bounding rectangles for contours
 			rectangle(drawing, minRect[i], color, 1, 8, 0);
+			rectangle(imgRects, minRect[i], color, 2, 8, 0);
 		}
 		i++;
 	}
@@ -126,9 +128,10 @@ vector<Rect> getWords(Mat _src) {
 	}
 
 	/// Show in a window
-	namedWindow("Contours", CV_WINDOW_KEEPRATIO);
-	imwrite("../Words/_contours.jpg", drawing);
-	imshow("Contours", drawing);
+	//namedWindow("Contours", CV_WINDOW_KEEPRATIO);
+	imwrite("Words/_contours.jpg", drawing);
+	imwrite("Words/WordsRects.jpg", imgRects);
+	//imshow("Contours", drawing);
 
 	return rects;
 }

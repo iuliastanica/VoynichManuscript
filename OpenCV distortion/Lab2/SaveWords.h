@@ -9,3 +9,4 @@ using namespace std;
 
 
 void saveWords(Mat _src);
+vector<Rect> getWords(Mat _src);

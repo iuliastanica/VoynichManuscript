@@ -5,12 +5,19 @@
 string n = "Templates/Temp1.jpg";
 Mat r, orig, img_display;
 Mat templ = imread(n);
-int imagVal = 0;
+int imagVal = 0, med = 0;
 int thres = 0;
 void match(int, void*);
+//void ReadImage(int, void*);
 
 void matching(Mat src)
 {
+	//n = "MedievalEnglish/Med" + Str(imagVal + 1) + ".jpg";
+	//n = "MedievalEnglish/Med1.jpg";
+	//src2 = imread(n);
+
+	//ReadImage(0, 0);
+
 	src.copyTo(orig);
 	match(0, 0);
 
@@ -18,8 +25,10 @@ void matching(Mat src)
 	{
 		createTrackbar("Template", "Source Image", &imagVal, 3, match);
 		createTrackbar("Threshold", "Source Image", &thres, 5, match);
+		//createTrackbar("Medieval image", "Source Image", &med, 3, match);
+
 		setTrackbarPos("Template", "Source Image", 0);
-		setTrackbarPos("Threshold", "Source Image", 2);
+		setTrackbarPos("Threshold", "Source Image", 0);
 	}
 	catch (cv::Exception& e)
 	{
@@ -27,6 +36,13 @@ void matching(Mat src)
 		std::cout << "exception caught: " << err_msg << std::endl;
 	}
 }
+
+//Testing medieval images
+/*void ReadImage(int, void*)
+{
+	n = "MedievalEnglish/Med" + Str(med + 5) + ".jpg";
+	src2 = imread(n);
+}*/
 
 
 void ReadTemplate(int, void*)
@@ -39,6 +55,7 @@ void ReadTemplate(int, void*)
 void match(int, void*)
 {
 	ReadTemplate(0, 0);
+
 	orig.copyTo(img_display);
 
 	/// Create the result matrix (R from doc)

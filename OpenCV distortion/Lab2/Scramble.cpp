@@ -2,56 +2,56 @@
 #include "Scramble.h"
 #include "SaveWords.h"
 
-Mat result, original, *auxDest;
+Mat resultScram, originalScram, *auxDestScram;
 int roi_w, roi_h;
-int imgIndice = 0;
+int indScram = 0;
 
 Mat getResultScram()
 {
-	return result;
+	return resultScram;
 }
 
 void chooseRand(Mat &roi1, Mat &roi2)
 {
 	int top1, left1, top2, left2; //random corners for ROIs
-	top1 = rand() % (result.rows - roi_h);
-	top2 = rand() % (result.rows - roi_h);
-	left1 = rand() % (result.cols - roi_w);
-	left2 = rand() % (result.cols - roi_w);
-	roi1 = result(Rect(left1, top1, roi_w, roi_h));
-	roi2 = result(Rect(left2, top2, roi_w, roi_h));
+	top1 = rand() % (resultScram.rows - roi_h);
+	top2 = rand() % (resultScram.rows - roi_h);
+	left1 = rand() % (resultScram.cols - roi_w);
+	left2 = rand() % (resultScram.cols - roi_w);
+	roi1 = resultScram(Rect(left1, top1, roi_w, roi_h));
+	roi2 = resultScram(Rect(left2, top2, roi_w, roi_h));
 
 	for (int i = 0; i < roi1.cols; i++)
 		for (int j = 0; j < roi1.rows; j++)
 		{
 			if (roi1.at<uchar>(j, i) <= 2 || roi2.at<uchar>(j, i) <= 2) //don't choose from black background
 			{
-				top1 = rand() % (result.rows - roi_h);
-				top2 = rand() % (result.rows - roi_h);
-				left1 = rand() % (result.cols - roi_w);
-				left2 = rand() % (result.cols - roi_w);
-				roi1 = result(Rect(left1, top1, roi_w, roi_h));
-				roi2 = result(Rect(left2, top2, roi_w, roi_h));
+				top1 = rand() % (resultScram.rows - roi_h);
+				top2 = rand() % (resultScram.rows - roi_h);
+				left1 = rand() % (resultScram.cols - roi_w);
+				left2 = rand() % (resultScram.cols - roi_w);
+				roi1 = resultScram(Rect(left1, top1, roi_w, roi_h));
+				roi2 = resultScram(Rect(left2, top2, roi_w, roi_h));
 				i = 0; j = 0;
 			}
 			//other restrictions
 		}
 }
 
-void chooseWords()//Mat &roi1, Mat &roi2)
+void chooseWords()
 {
-	vector<Rect> rects = getWords(original);
+	vector<Rect> rects = getWords(originalScram);
 	Mat imgRect;
-	original.copyTo(imgRect);
+	originalScram.copyTo(imgRect);
 
 	namedWindow("imgRect", CV_WINDOW_KEEPRATIO);
 	imshow("imgRect", imgRect);
 }
 
-void trackbar_callback_scr(int value, void* userdata)
+void trackbar_callback_Scram(int value, void* userdata)
 {
-	original.copyTo(result);
-	cvtColor(result, result, CV_BGR2GRAY);
+	originalScram.copyTo(resultScram);
+	cvtColor(resultScram, resultScram, CV_BGR2GRAY);
 	for (int i = 0; i < value; i++)
 	{
 		Mat roi1, roi2;
@@ -62,13 +62,13 @@ void trackbar_callback_scr(int value, void* userdata)
 		roi2.copyTo(roi1);
 		aux.copyTo(roi2);
 	}
-	result.copyTo(*auxDest);
+	resultScram.copyTo(*auxDestScram);
 
-	string name = "Results/ImageScramble" + to_string(value) + "_" + to_string(imgIndice) + ".jpg";
-	imgIndice++;
-	imwrite(name, result);
+	string name = "Results/ImageScramble" + to_string(value) + "_" + to_string(indScram) + ".jpg";
+	indScram++;
+	imwrite(name, resultScram);
 
-	imshow("Result window", result);
+	imshow("Result window", resultScram);
 }
 
 //width, height of the ROI
@@ -78,17 +78,17 @@ void scramble(Mat _src, Mat &_dst, int w, int h)
 	roi_w = w;
 	roi_h = h;
 
-	_src.copyTo(result);
-	_src.copyTo(original);
-	cvtColor(result, result, CV_BGR2GRAY);
-	result.copyTo(_dst);
-	auxDest = &_dst;
+	_src.copyTo(resultScram);
+	_src.copyTo(originalScram);
+	cvtColor(resultScram, resultScram, CV_BGR2GRAY);
+	resultScram.copyTo(_dst);
+	auxDestScram = &_dst;
 
 	//chooseWords();
 
 	try
 	{
-		createTrackbar("Scramble", "Source Image", NULL, 30, trackbar_callback_scr, &result);
+		createTrackbar("Scramble", "Source Image", NULL, 30, trackbar_callback_Scram, &resultScram);
 		setTrackbarPos("Scramble", "Source Image", 5);
 		//result.copyTo(_dst);
 	}

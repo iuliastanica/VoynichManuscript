@@ -14,6 +14,8 @@
 #include "Window.h"
 #include "Template.h"
 #include "SaveWords.h"
+#include "Skew.h"
+#include "Perspective.h"
 
 using namespace cv;  
 using namespace std;
@@ -28,7 +30,7 @@ Mat small_window, small_dest, small_map_x, small_map_y;
 //Trackbar 1 for Voynich pages
 const int max_Trackbar = 3;
 //Trackbar 2 for changing Distortion device
-const int max_Trackbar2 = 9;
+const int max_Trackbar2 = 11;
 //Trackbar 4 for changing window shape
 const int max_Trackbar3 = 1;
 //Trackbar 5 for window width
@@ -97,8 +99,22 @@ void SaveWords(int, void*) {
 	saveWords(src);
 }
 
+void resetWindow()
+{
+	cvDestroyWindow("Source Image");
+	namedWindow("Source Image", CV_WINDOW_KEEPRATIO);
+	createTrackbar("Image", "Source Image", &imageVal, max_Trackbar, Distort);
+	createTrackbar("Method", "Source Image", &ind, max_Trackbar2, Distort);
+	createTrackbar("Width", "Source Image", &width, max_Trackbar4, Distort);
+	createTrackbar("Height", "Source Image", &height, max_Trackbar5, Distort);
+	createTrackbar("Save words", "Source Image", &imageVal, max_Trackbar7, SaveWords);
+
+}
+
 void Distort(int, void*)
 {
+	resetWindow();
+
 	ReadImages(0, 0);
 
 	string n = "Templates/Temp4.jpg";
@@ -177,6 +193,12 @@ void Distort(int, void*)
 			break;
 		case 9:
 			match(img_display, temp);
+			break;
+		case 10:
+			skew(img_display, dst);
+			break;
+		case 11:
+			perspective(img_display, dst);
 			break;
 	}
 

@@ -103,6 +103,6 @@ void match(int, void*)
 	}
 
 	imshow("Temp", templ);
-	namedWindow("Result", CV_WINDOW_KEEPRATIO);
-	imshow("Result", img_display);
+	//namedWindow("Result", CV_WINDOW_KEEPRATIO);
+	imshow("Result window", img_display);
 }

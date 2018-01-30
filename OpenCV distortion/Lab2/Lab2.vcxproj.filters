@@ -48,6 +48,12 @@
     <ClInclude Include="SaveWords.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Perspective.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Skew.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -78,6 +84,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SaveWords.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Perspective.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Skew.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

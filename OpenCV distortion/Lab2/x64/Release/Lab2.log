@@ -1,12 +1,43 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (x64\Release\) contains files shared from another project (Lab2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  stdafx.cpp
+  ConeDistortion.cpp
+ConeDistortion.cpp(45): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+ConeDistortion.cpp(100): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  CylinderDistortion.cpp
+  FishEyeDistortion.cpp
+FishEyeDistortion.cpp(7): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+FishEyeDistortion.cpp(85): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+FishEyeDistortion.cpp(87): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+FishEyeDistortion.cpp(88): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+FishEyeDistortion.cpp(90): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+FishEyeDistortion.cpp(92): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+FishEyeDistortion.cpp(93): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+FishEyeDistortion.cpp(106): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+FishEyeDistortion.cpp(115): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   Main.cpp
+  Perspective.cpp
+Perspective.cpp(17): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+Perspective.cpp(18): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+Perspective.cpp(19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+Perspective.cpp(21): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+Perspective.cpp(22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+Perspective.cpp(23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+Perspective.cpp(24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   SaveWords.cpp
-SaveWords.cpp(86): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-SaveWords.cpp(112): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+SaveWords.cpp(73): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+SaveWords.cpp(96): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Scramble.cpp
+Scramble.cpp(77): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Skew.cpp
+Skew.cpp(24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+Skew.cpp(25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+Skew.cpp(27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Template.cpp
+  TwirlDistortion.cpp
+  Window.cpp
   Generating code
-  307 of 512 functions (60.0%) were compiled, the rest were copied from previous compilation.
-    228 functions were new in current compilation
-    65 functions had inline decision re-evaluated but remain unchanged
+  118 of 575 functions (20.5%) were compiled, the rest were copied from previous compilation.
+    32 functions were new in current compilation
+    70 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  Lab2.vcxproj -> C:\Users\Iulia13\Documents\Master\Cursuri\An 2\GMRV\Boiangiu - Aeacd\Proiect\VoynichManuscript\OpenCV distortion\x64\Release\ImageDistortion.exe
-  Lab2.vcxproj -> C:\Users\Iulia13\Documents\Master\Cursuri\An 2\GMRV\Boiangiu - Aeacd\Proiect\VoynichManuscript\OpenCV distortion\x64\Release\ImageDistortion.pdb (Full PDB)
+  Lab2.vcxproj -> C:\Users\LocalGuest\Documents\GitHub\VoynichManuscript\OpenCV distortion\x64\Release\ImageDistortion.exe

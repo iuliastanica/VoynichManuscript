@@ -192,7 +192,7 @@ void Distort(int, void*)
 			scramble(img_display, dst, 200, 100);
 			break;
 		case 9:
-			match(img_display, temp);
+			matching(img_display);
 			break;
 		case 10:
 			skew(img_display, dst);
